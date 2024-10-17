@@ -320,3 +320,13 @@ fetch(`${url}?api_key=${tokenGy}`)
 //-----------------------------------------------------------------------
 
 //ADVANCE 
+// NPM INIT-T : iNFORMACIÓN DEL PROYECTO, "INDEX.JS", --Y = A todo le dice que sí 
+// packege.lock :mantiene una versión igual que tienen el desarrollador 1 al desarrollador 2. con "npm i" para que se genere el directorio nodede_modules, no se debe pasar el archivo "node_modules"
+// Ruta: ¿Qué es lo que desea el consumidor? Dar la respuesta al usuario, darle un recurso al usuario, cliente realiza la solicitud 
+//       el servidor responde a dicha solicitud. El servidor debe tener registrado la ruta para que se le entregue el recurso solicitado al cliente. 
+//       El enpoind se envía al servidor y este verifica si la ruta esta registrada y le entrehga el recurso solicitado. Algo que se llame como el enpoidt. 
+//       Se puede solicitar de diferentes formas
+// Response como se entregara la solicitud
+// Middleware: Seguridad, dice el nivel de acceso, ¿Pasa o no pasa?  
+// Autorización: Nivel de acceso 
+// Autenticación: 
