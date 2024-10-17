@@ -256,4 +256,67 @@ console.log(allServices)
 //JS - HTML (GACIAS A UN MOTOR DE PLANTILLAS PUEDE CONSIDERASE COMO LENGUAJE DE PROGRAMCIÓN)
 //JS PURO - VANILLA JS
 //PROGRAMACION 
+//Progrmación Asincrónica 
+// - callback 
+const getUserBDD = () => {console.log({id:123, name05: "Pancho", rol:"Administrador"})}
+setTimeout(getUserBDD, 5000);
 
+//callback - hell
+//Promesas
+const CONEXIONbddeXTERNA = (dataConection) => {
+  return new Promise((resolved, reject)=>{
+    setTimeout (()=>{
+        dataConection ? resolved("Connecction-OK") : reject("Conection bad")
+    }, 3000)
+  })
+}
+
+//then y catch
+CONEXIONbddeXTERNA(false)
+    .then(/*Callback*/ (response)=>{console.log(response)})
+    .catch((error)=>{console.log(error)})
+
+//Forma moderna 
+// Async - await
+const verifyConnection = async()=>{
+   try {
+    console.log(await CONEXIONbddeXTERNA (true)); 
+   } catch (error) {
+    console.log(error); 
+   }
+}
+verifyConnection()
+
+//Consumo
+fetch("https://dog.ceo/api/breeds/image/random")
+    .then((request)=>(request.json()))
+    .then((data)=>{console.log(data)})
+    .catch((error)=>(console.log(error)))
+
+const getDog = async () => {
+  try {
+    let request = await fetch("https://dog.ceo/api/breeds/image/random");
+    let data = await request.json(); 
+    console.log(data); 
+  } catch (error) {
+    console.log(error); 
+  }
+}
+getDog()
+//lerx9FDWD5PH78M207Cj95ac4KTt8G3vv
+//token: api.giphy.com/v1/stickers/trending
+const tokenGy = "lerx9FDWD5PH78M207Cj95ac4KTt8G3v"
+const url = "http://api.giphy.com/v1/stickers/trending"
+fetch(`${url}?api_key=${tokenGy}`)
+    .then((request)=>(request.json()))
+    .then((data)=>{console.log(data)})
+    .catch((error)=>(console.log(error)))
+// Hacer el consumo Autenticación para la web 
+// Faceio
+// Public Apis
+// Apis Ninga 
+// CONSUMIR LA API PRIVADA Y DESPÚES SE CONSUMEN LAS APIS PUBLICAS 
+
+//-----------------------------------------------------------------------
+
+//ADVANCE 
