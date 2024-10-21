@@ -426,21 +426,35 @@ app.use((resq, res)=>{res.send("<h1>Pagina no encontrada -404<h1>")})
 app.listen(3000)
 
 console.log("server ok")
-//Middleware (Se encuentra entre el request y el response) intermediaro que intervendrá en 
+
+//Ruta/ 
+
+//Middleware (Se encuentra entre el request y el response) es intermediaro 
 //            verifica si da o no el acceso 
-///           El use te indica si es un middleware
+///           El "use" te indica si es un middleware
 //            Se controla el acceso 
+//Response = El tipo de recurso que el servidor enviará o no
 
 app.use((req, res, next)=>{
     const {token} = req.body; 
     const response = token === "123"  ? true : false
     //sIN EL NEXT NO PASA A LA SECCION DE RUTAS 
-    response ? next(): res.status(401).json({msg:"invalid token"})
+    response ? next(): res.status(409).json({msg:"invalid token"})
 })
 //RUTAS
 app.get("/gifs", (req, res)=>{
     res.send("Lista de gifs"); 
 })
+//Servidor 
+app.listen(3000); 
 
 
+
+
+
+
+
+
+
+                                                           
 
