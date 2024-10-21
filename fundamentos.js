@@ -330,3 +330,117 @@ fetch(`${url}?api_key=${tokenGy}`)
 // Middleware: Seguridad, dice el nivel de acceso, ¿Pasa o no pasa?  
 // Autorización: Nivel de acceso 
 // Autenticación: 
+const express = require('express');
+const app = new express(); //Inicializar Express
+app.use(express.json());
+
+//Ruta/ 
+app.post('/register', (req, res)=>{
+    const {email, password} = req.body /*Desmenusar el contenido*/;
+    email === "mire@epn.edu.ec" ? res.send("User registred") : res.send("bad credentiales"); 
+})
+
+//Ruta / 
+/*app.get('/', (resq, res)=>{
+    res.send("Hola")
+})*/
+//Ruta 02 "/franquicias"
+app.get('/franquicias', (resq, res)=>{
+    res.send("Información de franquicias")
+})
+//Ruta 03 "/simple"
+app.get(/*Para backend se llaman rutas (para fronted: endpoint) : */'/simple', (resq, res)=>{
+    /*Recursos : */res.send("Hamburguesa simple")
+})
+
+//Ruta /products/:id
+app.get('/products/:id',(req,res)=>{
+    const {id} = req.params
+    const products = [
+        {
+            id: 56, 
+            title: "Laptop", 
+            price: 500
+        },
+        {
+            id:77, 
+            title: "Play 5", 
+            price: 800
+        }
+    ]
+    console.log(req.params)
+    const response = products.find((product)=>product.id === +id); 
+    response ? res.send(response):res.send("Product not found"); 
+})
+
+//Ruta /search
+app.get('/search', (req, res)=>{
+    //Desestruccion
+    const{orden}=req.query;
+    //Objeto
+    const responses = {
+        pollo:"Pollo del Hornero",
+        milanesa: "Milanesa de pollo"
+    }
+
+    const response = responses[orden] || "No existe"; 
+    res.send(response)
+})
+//Diferentes respuestas del servidor
+//RUTA
+app.get('/', (req, res)=>{
+    res.send("Landing Page de bienvenida")
+})
+//texto
+//RUTA / dashboard
+app.get('/dashboard',(req, res)=>{
+    const json = {
+        name: "mireya"
+    }
+    res.json(json)
+})
+//Json
+//RUTA / profile 
+/*app.get('/user/profile', (req, res)=>{
+    //_dirname = da el path
+    res.sendFile('./a.jpg', {
+        root:__dirname
+    })
+})*/
+
+app.get('/user/profile', (req, res)=>{
+    //_dirname = da el path
+    res.sendFile('Clase.pdf', {
+        root:__dirname
+    })
+})
+//Ruta /404
+app.get('/mouse', (req, res)=>{
+    res.send(
+        "<h1>Pagina no encontrada -404<h1></h1>"
+    )
+})
+//Esto es un middleware resquest: lo que se solicita 
+app.use((resq, res)=>{res.send("<h1>Pagina no encontrada -404<h1>")})
+
+app.listen(3000)
+
+console.log("server ok")
+//Middleware (Se encuentra entre el request y el response) intermediaro que intervendrá en 
+//            verifica si da o no el acceso 
+///           El use te indica si es un middleware
+//            Se controla el acceso 
+
+app.use((req, res, next)=>{
+    const {token} = req.body; 
+    const response = token === "123"  ? true : false
+    //sIN EL NEXT NO PASA A LA SECCION DE RUTAS 
+    response ? next(): res.status(401).json({msg:"invalid token"})
+})
+//RUTAS
+app.get("/gifs", (req, res)=>{
+    res.send("Lista de gifs"); 
+})
+
+
+
